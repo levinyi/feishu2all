@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logo SVG to PNG Converter</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 40px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .converter { 
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        canvas { 
+            border: 2px solid #ddd; 
+            margin: 20px; 
+            border-radius: 8px;
+        }
+        button { 
+            padding: 12px 24px; 
+            font-size: 16px; 
+            margin: 10px; 
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .convert-btn {
+            background: #4facfe;
+            color: white;
+        }
+        .download-btn {
+            background: #00f2fe;
+            color: white;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        #svg-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class='converter'>
+        <h1>🎨 飞书2ALL Logo 转换器</h1>
+        <p>将新的 SVG logo 转换为 PNG 格式</p>
+        
+        <div class="instructions">
+            <h3>📋 使用说明</h3>
+            <ol>
+                <li>点击 "转换为 PNG" 按钮</li>
+                <li>等待转换完成</li>
+                <li>点击 "下载 PNG" 保存文件</li>
+                <li>将下载的文件重命名为 <code>logo.png</code></li>
+                <li>替换项目中的 logo 文件</li>
+            </ol>
+        </div>
+        
+        <div id='svg-container'>
+            <h3>新 Logo 预览</h3>
+            <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <circle cx="64" cy="64" r="56" fill="url(#bgGradient)"/>
+              <g transform="translate(64, 64)">
+                <circle cx="-24" cy="0" r="8" fill="#FFFFFF" opacity="0.9"/>
+                <circle cx="-24" cy="0" r="4" fill="url(#bgGradient)"/>
+                <path d="M-12 0 L12 0 M6 -6 L12 0 L6 6" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="20" cy="-8" r="4" fill="#FFFFFF" opacity="0.9"/>
+                <circle cx="20" cy="0" r="4" fill="#FFFFFF" opacity="0.9"/>
+                <circle cx="20" cy="8" r="4" fill="#FFFFFF" opacity="0.9"/>
+                <circle cx="28" cy="-4" r="3" fill="#FFFFFF" opacity="0.7"/>
+                <circle cx="28" cy="4" r="3" fill="#FFFFFF" opacity="0.7"/>
+              </g>
+              <text x="64" y="100" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial, sans-serif">2ALL</text>
+            </svg>
+        </div>
+        
+        <canvas id='canvas' width='128' height='128'></canvas>
+        <br>
+        <button class="convert-btn" onclick='convertToPNG()'>🔄 转换为 PNG</button>
+        <button class="download-btn" onclick='downloadPNG()'>📥 下载 PNG</button>
+        <br>
+        <a id='download-link' style='display:none; margin-top: 20px; display: inline-block; padding: 10px; background: #4caf50; color: white; text-decoration: none; border-radius: 5px;'>右键保存为 logo.png</a>
+    </div>
+    
+    <script>
+        let pngDataUrl = null;
+        
+        function convertToPNG() {
+            const svg = document.querySelector('svg');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+            const svgUrl = URL.createObjectURL(svgBlob);
+            
+            const img = new Image();
+            img.onload = function() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, 128, 128);
+                pngDataUrl = canvas.toDataURL('image/png');
+                URL.revokeObjectURL(svgUrl);
+                alert('✅ PNG 转换完成！现在可以下载了。');
+            };
+            img.onerror = function() {
+                alert('❌ 转换失败，请重试。');
+            };
+            img.src = svgUrl;
+        }
+        
+        function downloadPNG() {
+            if (!pngDataUrl) {
+                alert('⚠️ 请先点击"转换为 PNG"按钮！');
+                return;
+            }
+            
+            const link = document.getElementById('download-link');
+            link.href = pngDataUrl;
+            link.download = 'logo.png';
+            link.style.display = 'inline-block';
+            link.textContent = '📁 右键保存为 logo.png';
+            
+            // 自动触发下载
+            const tempLink = document.createElement('a');
+            tempLink.href = pngDataUrl;
+            tempLink.download = 'logo.png';
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
+            
+            alert('📥 下载已开始！请将文件保存为 logo.png');
+        }
+    </script>
+</body>
+</html>

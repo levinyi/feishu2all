@@ -1,0 +1,33 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变定义 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景圆形 -->
+  <circle cx="64" cy="64" r="56" fill="url(#bgGradient)"/>
+  
+  <!-- 极简的转换图标 -->
+  <g transform="translate(64, 64)">
+    <!-- 左侧圆点 -->
+    <circle cx="-24" cy="0" r="8" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="-24" cy="0" r="4" fill="url(#bgGradient)"/>
+    
+    <!-- 转换箭头 -->
+    <path d="M-12 0 L12 0 M6 -6 L12 0 L6 6" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- 右侧多个圆点 -->
+    <circle cx="20" cy="-8" r="4" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="20" cy="0" r="4" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="20" cy="8" r="4" fill="#FFFFFF" opacity="0.9"/>
+    
+    <circle cx="28" cy="-4" r="3" fill="#FFFFFF" opacity="0.7"/>
+    <circle cx="28" cy="4" r="3" fill="#FFFFFF" opacity="0.7"/>
+  </g>
+  
+  <!-- 底部文字 -->
+  <text x="64" y="100" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial, sans-serif">2ALL</text>
+</svg>
