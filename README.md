@@ -1,6 +1,6 @@
 # 🚀 飞书2ALL - 一键文档转换插件
 
-[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/yourusername/cloud-file-converter)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/levinyi/feishu2all)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-red.svg)](https://chrome.google.com/webstore)
 
@@ -100,8 +100,8 @@
 ### 本地开发
 ```bash
 # 克隆项目
-git clone https://github.com/yourusername/cloud-file-converter.git
-cd cloud-file-converter
+git clone https://github.com/levinyi/feishu2all.git
+cd feishu2all
 
 # 安装依赖
 npm install
@@ -115,7 +115,7 @@ npm run build
 
 ### 项目结构
 ```
-cloud-file-converter/
+feishu2all/
 ├── src/
 │   ├── components/          # Vue组件
 │   │   ├── DocumentInput/   # 文档输入组件
@@ -219,8 +219,8 @@ A: 可能原因：
 ## 📞 联系我们
 
 - 📧 邮箱：your-email@example.com
-- 🐛 问题反馈：[GitHub Issues](https://github.com/yourusername/cloud-file-converter/issues)
-- 💬 讨论：[GitHub Discussions](https://github.com/yourusername/cloud-file-converter/discussions)
+- 🐛 问题反馈：[GitHub Issues](https://github.com/levinyi/feishu2all/issues)
+- 💬 讨论：[GitHub Discussions](https://github.com/levinyi/feishu2all/discussions)
 
 ---
 

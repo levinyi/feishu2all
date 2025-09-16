@@ -83,5 +83,5 @@
 如果您在使用过程中遇到问题或有改进建议，请通过以下方式联系我们：
 
 - 📧 邮箱：your-email@example.com
-- 🐛 GitHub Issues：[提交问题](https://github.com/yourusername/cloud-file-converter/issues)
-- 💬 GitHub Discussions：[参与讨论](https://github.com/yourusername/cloud-file-converter/discussions)
+- 🐛 GitHub Issues：[提交问题](https://github.com/levinyi/feishu2all/issues)
+- 💬 GitHub Discussions：[参与讨论](https://github.com/levinyi/feishu2all/discussions)
